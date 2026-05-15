@@ -3,77 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic AI | Cryptographic Systems Lab</title>
+    <title>Futuristic AI | Advanced Cryptographic Systems Laboratory</title>
     <style>
-        body { font-family: 'Courier New', Courier, monospace; background: #0b0b0e; color: #c5c5d0; padding: 40px; max-width: 900px; margin: 0 auto; line-height: 1.6; }
-        h1 { color: #ff9900; border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 5px; font-size: 28px; }
-        h2 { color: #00ffcc; font-size: 18px; margin-top: 30px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
-        h3 { color: #ffcc00; font-size: 15px; margin-bottom: 5px; }
-        .subtitle { color: #777; font-size: 12px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
-        .panel { background: #12121a; padding: 20px; border-left: 4px solid #ff9900; margin: 20px 0; border-radius: 2px; }
-        .code-block { font-family: monospace; background: #050508; color: #00ff00; padding: 15px; border-radius: 3px; overflow-x: auto; font-size: 13px; border: 1px solid #1a1a26; margin: 10px 0; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .tag { background: #222; color: #aaa; padding: 2px 6px; font-size: 11px; border-radius: 3px; margin-right: 5px; }
-        a { color: #00ffcc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .footer { margin-top: 50px; font-size: 11px; color: #444; text-align: center; border-top: 1px solid #222; padding-top: 20px; }
+        :root {
+            --bg-color: #0a0a0f;
+            --panel-bg: #11111a;
+            --accent-color: #ff9900;
+            --secondary-accent: #00ffcc;
+            --text-main: #d1d1db;
+            --text-muted: #6e6e7e;
+            --code-color: #39ff14;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Courier New', Courier, monospace; background: var(--bg-color); color: var(--text-main); padding: 40px 20px; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        /* Header Styling */
+        header { border-bottom: 2px solid #222; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .brand-title { color: var(--accent-color); font-size: 32px; font-weight: bold; letter-spacing: 1px; }
+        .subtitle { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+        .status-badge { font-size: 11px; background: rgba(0, 255, 204, 0.1); color: var(--secondary-accent); padding: 4px 10px; border-radius: 3px; border: 1px solid rgba(0, 255, 204, 0.2); height: fit-content; }
+        
+        .intro-text { font-size: 15px; margin-bottom: 40px; color: #a5a5b0; max-width: 850px; }
+        
+        /* Grid Layout */
+        h2 { color: var(--secondary-accent); font-size: 20px; margin: 40px 0 20px 0; padding-bottom: 5px; border-bottom: 1px solid #222; text-transform: uppercase; letter-spacing: 1px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        
+        /* Specialization Panels */
+        .card { background: var(--panel-bg); border-radius: 4px; border: 1px solid #1c1c28; padding: 25px; transition: border-color 0.3s ease; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--accent-color); }
+        .card-header { display: flex; align-items: center; margin-bottom: 15px; gap: 15px; }
+        .card-icon { width: 40px; height: 40px; fill: var(--accent-color); background: rgba(255, 153, 0, 0.05); padding: 8px; border-radius: 4px; }
+        .card-title { color: #fff; font-size: 16px; font-weight: bold; }
+        .card ul { padding-left: 18px; margin-top: 10px; }
+        .card li { font-size: 13px; color: #b5b5c0; margin-bottom: 6px; }
+        
+        /* Technical Test Vectors Block */
+        .code-container { background: #050508; border: 1px solid #161622; border-radius: 4px; padding: 20px; margin: 20px 0; }
+        .code-header { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; border-bottom: 1px solid #161622; padding-bottom: 5px; }
+        .code-block { font-family: monospace; color: var(--code-color); overflow-x: auto; font-size: 13px; white-space: pre; }
+        
+        /* Footer & Contact Section */
+        footer { margin-top: 80px; border-top: 1px solid #222; padding-top: 30px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .contact-col h4 { color: #fff; font-size: 14px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .contact-col p, .contact-col a { font-size: 13px; color: #858590; text-decoration: none; }
+        .contact-col a:hover { color: var(--secondary-accent); text-decoration: underline; }
+        .copyright { text-align: center; font-size: 11px; color: #444; margin-top: 20px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <h1>FUTURISTIC AI</h1>
-    <div class="subtitle">Cryptographic Research & High-Frequency Systems Engineering Lab</div>
-    
-    <p>Futuristic AI is an independent R&D facility specializing in low-level C++ blockchain protocol engineering, bare-metal heterogeneous cluster orchestration, and stateless post-quantum cryptographic primitives. We design non-fragmenting software structures engineered to survive heavy transaction validation strain on sovereign node networks.</p>
+    <div class="container">
+        <header>
+            <div>
+                <div class="brand-title">FUTURISTIC AI</div>
+                <div class="subtitle">Cryptographic Infrastructure Lab & Systems Engineering</div>
+            </div>
+            <div class="status-badge">● INFRASTRUCTURE NODE LIVE</div>
+        </header>
 
-    <h2>1. ACTIVE CRYPTOGRAPHIC CORE PROJECT: QUANTUM MSS</h2>
-    <p>A reference-grade, stateless Merkle Signature Scheme (MSS) extension built natively for integration into Bitcoin Core's <code>src/crypto/</code> architecture. Engineered as a future-proof post-quantum layer targeting Tapscript-native spending routes.</p>
-    
-    <div class="panel">
-        <h3>Defensive Enhancements & Memory Architecture:</h3>
-        <ul>
-            <li><strong>CVE-2012-2459 Hardening:</strong> Enforces recursive Tail-End Duplication across all odd-leaf parsing layers to fundamentally block Merkle tree mutation exploits.</li>
-            <li><strong>Zero Heap Fragmentation:</strong> Utilizes strict C++11 <code>std::move</code> semantics and upfront <code>std::vector::reserve</code> memory management loops to prevent runtime <code>emalloc</code> overhead flags.</li>
-            <li><strong>Serialization:</strong> Computes native little-endian <code>uint256</code> Double-SHA256 (SHA256d) primitives for seamless integration into existing node consensus code.</li>
-        </ul>
-    </div>
+        <p class="intro-text">
+            Futuristic AI is an independent, specialized systems research and development laboratory based in Durban, South Africa. We engineer highly optimized, low-level software frameworks, bare-metal hardware clusters, and stateless post-quantum cryptographic primitives built to survive persistent execution stress on high-frequency validation networks.
+        </p>
 
-    <h3>Hardware-Verified Deterministic Test Vectors (8-Node Microcontroller Cluster):</h3>
-    <p>Extracted from bare-metal physical validation matrices with private execution signing isolated inside an air-gapped Hardware Security Module (Node 7):</p>
-    
-    <div class="code-block">
+        <h2>Ecosystem Specializations</h2>
+        <div class="grid">
+            <!-- Specialization 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <!-- Embedded SVG Vector Graphic -->
+                    <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    <div class="card-title">Post-Quantum<br>Cryptography</div>
+                </div>
+                <p style="font-size: 13px; color: #858590; margin-bottom: 10px;">Reference implementation engineering for stateless, Merkle-based primitives.</p>
+                <ul>
+                    <li>Integration design for Bitcoin Core src/crypto/ layers.</li>
+                    <li>Recursive Tail-End Duplication loops to mitigate tree-mutation exploits (CVE-2012-2459).</li>
+                    <li>Stateless verification handling via optimized audit paths to minimize PSBT data bloat.</li>
+                </ul>
+            </div>
+
+            <!-- Specialization 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <!-- Embedded SVG Vector Graphic -->
+                    <svg class="card-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                    <div class="card-title">Bare-Metal Hardware<br>Orchestration</div>
+                </div>
+                <p style="font-size: 13px; color: #858590; margin-bottom: 10px;">Staging and debugging complex data algorithms directly on dedicated bare silicon.</p>
+                <ul>
+                    <li>Multi-node heterogeneous physical microcontroller testing clusters.</li>
+                    <li>Low-latency serial communication routing loops via bare FTDI transport buses.</li>
+                    <li>Air-gapped Hardware Security Module (HSM) isolation for signing environment protection.</li>
+                </ul>
+            </div>
+
+            <!-- Specialization 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <!-- Embedded SVG Vector Graphic -->
+                    <svg class="card-icon" viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99l1.5 1.5z"/></svg>
+                    <div class="card-title">Quantitative System<br>Telemetry</div>
+                </div>
+                <p style="font-size: 13px; color: #858590; margin-bottom: 10px;">Multi-threaded execution engines optimized for lightning-fast parsing streams.</p>
+                <ul>
+                    <li>High-velocity liquidity orderbook absorption parsers reading up to 3 times/sec.</li>
+                    <li>Microsecond market toxicity and structural volatility monitoring filters.</li>
+                    <li>Decentralized blockchain wallet event listeners for custom local settlement routing.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Cryptographic Validation Logs (Quantum MSS)</h2>
+        <p style="font-size: 14px; margin-bottom: 15px; color: #a5a5b0;">
+            Deterministic little-endian uint256 root states cross-verified under load loops on an 8-node physical cluster:
+        </p>
+        <div class="code-container">
+            <div class="code-header">Consolidated Test Verification Output</div>
+            <div class="code-block">
 // Scenario 1: The Balanced Pair (2 Leaves)
-Root: 02dfa311a6e1e44e445ce44fee4a3a38df03885bf1cd166ab0701373762dca8b
+Root Digest: 02dfa311a6e1e44e445ce44fee4a3a38df03885bf1cd166ab0701373762dca8b
 
-// Scenario 2: The Unbalanced Triple (3 Leaves - Hardened)
-Root: 0106ca8663b427c631ad3e01612da3bbf27e3742dee2ffc9a77b73d087f6d2dd
+// Scenario 2: The Unbalanced Triple (3 Leaves - CVE-2012-2459 Hardened)
+Root Digest: 0106ca8663b427c631ad3e01612da3bbf27e3742dee2ffc9a77b73d087f6d2dd
 
-// Scenario 3: The Full Quad (4 Leaves - O(log N) Layer)
-Root: 363393a36d9a7289815cc1205f5bb34f08d86efe830b8a68a9ac3f3bb4313615
-    </div>
+// Scenario 3: The Full Quad (4 Leaves - O(log N) Depth Layer)
+Root Digest: 363393a36d9a7289815cc1205f5bb34f08d86efe830b8a68a9ac3f3bb4313615</div>
+        </div>
 
-    <h2>2. QUANTITATIVE PRODUCTION PROJECT: AEGIS QUANTUM FLOW (AQF)</h2>
-    <p>A multi-threaded, high-frequency quantitative execution matrix running 13 standalone algorithmic trading engines linked via an isolated local settlement framework.</p>
-    
-    <div class="panel">
-        <h3>Pipeline Specifications:</h3>
-        <ul>
-            <li><strong>Network Order Absorption Tracker:</strong> Multi-threaded execution parsing live orderbook liquidity sweeps up to 3 times per second.</li>
-            <li><strong>Microsecond Toxicity Filter Engine:</strong> Monitors live market volume spikes and dynamically triggers an execution halt during institutional liquidation cascades to protect capital reserves.</li>
-            <li><strong>Decentralized Wallet Settlement Layer:</strong> Bypasses restrictive web interfaces by leveraging a dedicated <code>blockchain_listener.py</code> script tracking live BEP20 USDT data directly into a local web server (Port 9000).</li>
-        </ul>
-    </div>
-
-    <h2>3. CONTRIBUTIONS & REPOSITORIES</h2>
-    <ul>
-        <li><span class="tag">Bitcoin Core</span> Merged code history and pull request analysis on <strong>BIP-322 (Proof of Funds)</strong> extension implementations handling PSBT inputs.</li>
-        <li><span class="tag">C++11</span> Reference implementation codebase fork: <a href="https://github.com" target="_blank">://github.com</a></li>
-        <li><span class="tag">Bare-Metal</span> Staging frameworks via FTDI hardware communication interfaces.</li>
-    </ul>
-
-    <div class="footer">
-        Futuristic AI &copy; 2026 | Durban, South Africa | Inquiries: mohamedalthaaf@gmail.com
+        <footer>
+            <div class="contact-grid">
+                <div class="contact-col">
+                    <h4>Operations Node</h4>
+                    <p>Futuristic AI Lab</p>
+                    <p>Durban, KwaZulu-Natal</p>
+                    <p>South Africa</p>
+                </div>
+                <div class="contact-col">
+                    <h4>Communications</h4>
+                    <p>Secure Email Routing:</p>
+                    <p><a href="mailto:mohamedalthaaf@gmail.com">mohamedalthaaf@gmail.com</a></p>
+                </div>
+                <div class="contact-col">
+                    <h4>Source Control</h4>
+                    <p>Development Repository:</p>
+                    <p><a href="https://github.com" target="_blank">://github.com</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                FUTURISTIC AI &copy; 2026 | PROTOCOL SYSTEMS ARCHITECTURE LAB
+            </div>
+        </footer>
     </div>
 
 </body>
