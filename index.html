@@ -3,27 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic AI | Systems Engineering Lab</title>
+    <title>Futuristic AI | Cryptographic Systems Lab</title>
     <style>
-        body { font-family: monospace; background: #0f0f14; color: #c5c5d0; padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-        h1 { color: #ff9900; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .spec { background: #16161f; padding: 15px; border-left: 3px solid #ff9900; margin: 20px 0; }
+        body { font-family: 'Courier New', Courier, monospace; background: #0b0b0e; color: #c5c5d0; padding: 40px; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+        h1 { color: #ff9900; border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 5px; font-size: 28px; }
+        h2 { color: #00ffcc; font-size: 18px; margin-top: 30px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
+        h3 { color: #ffcc00; font-size: 15px; margin-bottom: 5px; }
+        .subtitle { color: #777; font-size: 12px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+        .panel { background: #12121a; padding: 20px; border-left: 4px solid #ff9900; margin: 20px 0; border-radius: 2px; }
+        .code-block { font-family: monospace; background: #050508; color: #00ff00; padding: 15px; border-radius: 3px; overflow-x: auto; font-size: 13px; border: 1px solid #1a1a26; margin: 10px 0; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .tag { background: #222; color: #aaa; padding: 2px 6px; font-size: 11px; border-radius: 3px; margin-right: 5px; }
+        a { color: #00ffcc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .footer { margin-top: 50px; font-size: 11px; color: #444; text-align: center; border-top: 1px solid #222; padding-top: 20px; }
     </style>
 </head>
 <body>
+
     <h1>FUTURISTIC AI</h1>
-    <p><strong>Location:</strong> Durban, South Africa</p>
-    <p>Futuristic AI is an independent systems engineering and research laboratory specializing in low-level C++ protocol optimization, bare-metal hardware cluster configuration, and stateless post-quantum cryptographic primitives.</p>
+    <div class="subtitle">Cryptographic Research & High-Frequency Systems Engineering Lab</div>
     
-    <div class="spec">
-        <h3>Active R&D Focus:</h3>
+    <p>Futuristic AI is an independent R&D facility specializing in low-level C++ blockchain protocol engineering, bare-metal heterogeneous cluster orchestration, and stateless post-quantum cryptographic primitives. We design non-fragmenting software structures engineered to survive heavy transaction validation strain on sovereign node networks.</p>
+
+    <h2>1. ACTIVE CRYPTOGRAPHIC CORE PROJECT: QUANTUM MSS</h2>
+    <p>A reference-grade, stateless Merkle Signature Scheme (MSS) extension built natively for integration into Bitcoin Core's <code>src/crypto/</code> architecture. Engineered as a future-proof post-quantum layer targeting Tapscript-native spending routes.</p>
+    
+    <div class="panel">
+        <h3>Defensive Enhancements & Memory Architecture:</h3>
         <ul>
-            <li>Stateless Post-Quantum Merkle Signature Schemes (MSS) for Core Architectures</li>
-            <li>Double-SHA256 (SHA256d) Native Hardware Cluster Staging (FTDI Matrices)</li>
-            <li>High-Frequency Quantitative Telemetry Processing Systems</li>
+            <li><strong>CVE-2012-2459 Hardening:</strong> Enforces recursive Tail-End Duplication across all odd-leaf parsing layers to fundamentally block Merkle tree mutation exploits.</li>
+            <li><strong>Zero Heap Fragmentation:</strong> Utilizes strict C++11 <code>std::move</code> semantics and upfront <code>std::vector::reserve</code> memory management loops to prevent runtime <code>emalloc</code> overhead flags.</li>
+            <li><strong>Serialization:</strong> Computes native little-endian <code>uint256</code> Double-SHA256 (SHA256d) primitives for seamless integration into existing node consensus code.</li>
         </ul>
     </div>
+
+    <h3>Hardware-Verified Deterministic Test Vectors (8-Node Microcontroller Cluster):</h3>
+    <p>Extracted from bare-metal physical validation matrices with private execution signing isolated inside an air-gapped Hardware Security Module (Node 7):</p>
     
-    <p><em>Inquiries: mohamedalthaaf@gmail.com</em></p>
+    <div class="code-block">
+// Scenario 1: The Balanced Pair (2 Leaves)
+Root: 02dfa311a6e1e44e445ce44fee4a3a38df03885bf1cd166ab0701373762dca8b
+
+// Scenario 2: The Unbalanced Triple (3 Leaves - Hardened)
+Root: 0106ca8663b427c631ad3e01612da3bbf27e3742dee2ffc9a77b73d087f6d2dd
+
+// Scenario 3: The Full Quad (4 Leaves - O(log N) Layer)
+Root: 363393a36d9a7289815cc1205f5bb34f08d86efe830b8a68a9ac3f3bb4313615
+    </div>
+
+    <h2>2. QUANTITATIVE PRODUCTION PROJECT: AEGIS QUANTUM FLOW (AQF)</h2>
+    <p>A multi-threaded, high-frequency quantitative execution matrix running 13 standalone algorithmic trading engines linked via an isolated local settlement framework.</p>
+    
+    <div class="panel">
+        <h3>Pipeline Specifications:</h3>
+        <ul>
+            <li><strong>Network Order Absorption Tracker:</strong> Multi-threaded execution parsing live orderbook liquidity sweeps up to 3 times per second.</li>
+            <li><strong>Microsecond Toxicity Filter Engine:</strong> Monitors live market volume spikes and dynamically triggers an execution halt during institutional liquidation cascades to protect capital reserves.</li>
+            <li><strong>Decentralized Wallet Settlement Layer:</strong> Bypasses restrictive web interfaces by leveraging a dedicated <code>blockchain_listener.py</code> script tracking live BEP20 USDT data directly into a local web server (Port 9000).</li>
+        </ul>
+    </div>
+
+    <h2>3. CONTRIBUTIONS & REPOSITORIES</h2>
+    <ul>
+        <li><span class="tag">Bitcoin Core</span> Merged code history and pull request analysis on <strong>BIP-322 (Proof of Funds)</strong> extension implementations handling PSBT inputs.</li>
+        <li><span class="tag">C++11</span> Reference implementation codebase fork: <a href="https://github.com" target="_blank">://github.com</a></li>
+        <li><span class="tag">Bare-Metal</span> Staging frameworks via FTDI hardware communication interfaces.</li>
+    </ul>
+
+    <div class="footer">
+        Futuristic AI &copy; 2026 | Durban, South Africa | Inquiries: mohamedalthaaf@gmail.com
+    </div>
+
 </body>
 </html>
