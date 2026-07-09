@@ -111,6 +111,50 @@
         .contact-col p, .contact-col a { font-size: 12.5px; color: #858590; text-decoration: none; display: block; margin-bottom: 3px; }
         .contact-col a:hover { color: var(--secondary-accent); text-decoration: underline; }
         .copyright { text-align: center; font-size: 11px; color: #444; margin-top: 20px; letter-spacing: 1px; }
+
+        /* ---- Get in Touch section ---- */
+        .touch-box { max-width: 560px; background: var(--panel-bg-2); border: 1px solid #1c1c28; border-radius: 8px; padding: 28px; }
+        .touch-box label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-muted); margin: 14px 0 6px; }
+        .touch-box label:first-child { margin-top: 0; }
+        .touch-box input, .touch-box textarea {
+            width: 100%; background: #0a0a10; border: 1px solid #262838; border-radius: 6px;
+            padding: 11px 12px; color: var(--text-main); font-family: inherit; font-size: 13px; outline: none;
+        }
+        .touch-box input:focus, .touch-box textarea:focus { border-color: var(--secondary-accent); }
+        .touch-box textarea { resize: vertical; }
+        .touch-btn {
+            width: 100%; margin-top: 18px; padding: 12px; border: none; border-radius: 6px; cursor: pointer;
+            background: var(--secondary-accent); color: #05050a; font-weight: bold; font-size: 13px; font-family: inherit;
+        }
+        .touch-msg { font-size: 12.5px; margin-top: 10px; display: none; }
+        .touch-msg.ok { color: var(--secondary-accent); }
+        .touch-msg.err { color: var(--danger); }
+
+        /* ---- Modal (MSS evaluation request) ---- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(5,5,10,0.85); z-index: 100;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-box {
+            background: var(--panel-bg-2); border: 1px solid #2a2a3a; border-radius: 8px;
+            padding: 28px; max-width: 440px; width: 100%;
+        }
+        .modal-box h3 { font-family: 'Space Grotesk', sans-serif; color: #fff; font-size: 18px; margin-bottom: 6px; }
+        .modal-box p.sub { font-size: 12.5px; color: var(--text-muted); margin-bottom: 18px; }
+        .modal-box label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-muted); margin: 12px 0 6px; }
+        .modal-box label:first-of-type { margin-top: 0; }
+        .modal-box input, .modal-box textarea {
+            width: 100%; background: #0a0a10; border: 1px solid #262838; border-radius: 6px;
+            padding: 10px 12px; color: var(--text-main); font-family: inherit; font-size: 13px; outline: none;
+        }
+        .modal-box textarea { resize: vertical; }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 18px; }
+        .modal-buttons button { flex: 1; padding: 11px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 13px; }
+        .modal-send { background: var(--danger); color: #0a0a10; }
+        .modal-cancel { background: transparent; border: 1px solid #333 !important; color: var(--text-muted); }
+        .modal-msg { font-size: 12.5px; margin-top: 10px; display: none; }
+        .modal-msg.ok { color: var(--secondary-accent); }
+        .modal-msg.err { color: var(--danger); }
     </style>
 </head>
 <body>
@@ -165,7 +209,7 @@
                 <li><span class="k">Integration</span><span class="v">Zero-fork</span></li>
                 <li><span class="k">Status</span><span class="v" style="color:var(--accent-color);">Hardening in progress</span></li>
             </ul>
-            <a class="sys-link" style="--sys-accent: #ff5f5f; border-color: #ff5f5f; color: #ff5f5f;" href="mailto:support-mss@futuristicai.co.za">Request Evaluation Pack →</a>
+            <button class="sys-link" style="--sys-accent: #ff5f5f; border-color: #ff5f5f; color: #ff5f5f; background:none; cursor:pointer; width:100%; font-family:inherit;" onclick="openContactModal('mss')">Request Evaluation Pack →</button>
         </div>
         </div>
 
@@ -295,6 +339,21 @@ Root Digest: 0106ca8663b427c631ad3e01612da3bbf27e3742dee2ffc9a77b73d087f6d2dd
 Root Digest: 363393a36d9a7289815cc1205f5bb34f08d86efe830b8a68a9ac3f3bb4313615</div>
         </div>
 
+        <h2>Get in Touch</h2>
+        <div class="touch-box">
+            <label>Name</label>
+            <input type="text" id="touch-name" placeholder="Your name">
+            <label>Email</label>
+            <input type="text" id="touch-email" placeholder="you@example.com">
+            <label>Subject</label>
+            <input type="text" id="touch-subject" placeholder="What's this about?">
+            <label>Message</label>
+            <textarea id="touch-message" rows="5" placeholder="Tell us what's going on"></textarea>
+            <div class="touch-msg" id="touch-error"></div>
+            <div class="touch-msg ok" id="touch-success">Message sent — we'll get back to you soon.</div>
+            <button class="touch-btn" id="btn-touch-send">Send message</button>
+        </div>
+
         <footer>
             <div class="contact-grid">
                 <div class="contact-col">
@@ -351,6 +410,129 @@ Root Digest: 363393a36d9a7289815cc1205f5bb34f08d86efe830b8a68a9ac3f3bb4313615</d
         }
         refreshQLStats();
         setInterval(refreshQLStats, 6000);
+    </script>
+
+    <!-- ===== MSS Evaluation Request Modal ===== -->
+    <div class="modal-overlay hidden" id="mss-modal-overlay">
+        <div class="modal-box">
+            <h3>Request MSS Evaluation Pack</h3>
+            <p class="sub">Sent directly to our MSS team — no third-party mail client needed.</p>
+
+            <label>Name</label>
+            <input type="text" id="mss-name" placeholder="Your name">
+            <label>Email</label>
+            <input type="text" id="mss-email" placeholder="you@company.com">
+            <label>Message</label>
+            <textarea id="mss-message" rows="4" placeholder="Tell us about your use case"></textarea>
+
+            <div class="modal-msg" id="mss-modal-error"></div>
+            <div class="modal-msg ok" id="mss-modal-success">Request sent — we'll be in touch shortly.</div>
+
+            <div class="modal-buttons">
+                <button class="modal-cancel" onclick="closeContactModal()">Cancel</button>
+                <button class="modal-send" id="btn-mss-send">Send Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const QL_API = 'https://quantum-lattice.futuristicai.co.za/api/support';
+
+        async function submitSupport(payload, errEl, successEl, button, buttonDefaultText) {
+            errEl.style.display = 'none';
+            successEl.style.display = 'none';
+            button.disabled = true;
+            button.textContent = 'Sending…';
+            try {
+                const res = await fetch(QL_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const rawText = await res.text();
+                let data = {};
+                try { data = JSON.parse(rawText); } catch (e) { data = { error: rawText }; }
+                if (res.ok) {
+                    successEl.style.display = 'block';
+                    return true;
+                } else {
+                    throw new Error(data.error || 'Could not send your message.');
+                }
+            } catch (e) {
+                errEl.textContent = e.message || 'Could not reach the server.';
+                errEl.style.display = 'block';
+                return false;
+            } finally {
+                button.disabled = false;
+                button.textContent = buttonDefaultText;
+            }
+        }
+
+        // ---- MSS modal ----
+        function openContactModal(kind) {
+            document.getElementById('mss-modal-overlay').classList.remove('hidden');
+        }
+        function closeContactModal() {
+            document.getElementById('mss-modal-overlay').classList.add('hidden');
+        }
+
+        document.getElementById('btn-mss-send').addEventListener('click', async () => {
+            const name = document.getElementById('mss-name').value.trim();
+            const email = document.getElementById('mss-email').value.trim();
+            const message = document.getElementById('mss-message').value.trim();
+            const errEl = document.getElementById('mss-modal-error');
+            const successEl = document.getElementById('mss-modal-success');
+            const button = document.getElementById('btn-mss-send');
+
+            if (!name || !email || !message) {
+                errEl.textContent = 'Please fill in every field.';
+                errEl.style.display = 'block';
+                return;
+            }
+
+            const ok = await submitSupport({
+                name, email,
+                subject: 'MSS Evaluation Pack Request',
+                message,
+                department: 'mss',
+            }, errEl, successEl, button, 'Send Request');
+
+            if (ok) {
+                document.getElementById('mss-name').value = '';
+                document.getElementById('mss-email').value = '';
+                document.getElementById('mss-message').value = '';
+            }
+        });
+
+        // ---- General Get in Touch section ----
+        document.getElementById('btn-touch-send').addEventListener('click', async () => {
+            const name = document.getElementById('touch-name').value.trim();
+            const email = document.getElementById('touch-email').value.trim();
+            const subject = document.getElementById('touch-subject').value.trim();
+            const message = document.getElementById('touch-message').value.trim();
+            const errEl = document.getElementById('touch-error');
+            const successEl = document.getElementById('touch-success');
+            const button = document.getElementById('btn-touch-send');
+
+            if (!name || !email || !subject || !message) {
+                errEl.textContent = 'Please fill in every field.';
+                errEl.style.display = 'block';
+                successEl.style.display = 'none';
+                return;
+            }
+
+            const ok = await submitSupport({
+                name, email, subject, message,
+                department: 'info',
+            }, errEl, successEl, button, 'Send message');
+
+            if (ok) {
+                document.getElementById('touch-name').value = '';
+                document.getElementById('touch-email').value = '';
+                document.getElementById('touch-subject').value = '';
+                document.getElementById('touch-message').value = '';
+            }
+        });
     </script>
 
 </body>
